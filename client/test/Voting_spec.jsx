@@ -1,10 +1,11 @@
-import React from 'react/addons';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 import {List} from 'immutable';
 import Voting from '../src/components/Voting';
 import {expect} from 'chai';
 
-const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate} = React.addons.TestUtils;
+const {renderIntoDocument, scryRenderedDOMComponentsWithTag, Simulate} = TestUtils;
 
 describe('Voting', () => {
     it('renders a pair of buttons', () => {
@@ -75,6 +76,7 @@ describe('Voting', () => {
         expect(firstButton.textContent).to.equal('Trainspotting');
 
         pair[0] = 'Sunshine';
+        // better is to render the componnet again http://stackoverflow.com/questions/34036506/call-render-again-at-the-top-level-and-maintain-mutability
         component.setProps({pair: pair});
 
         firstButton = scryRenderedDOMComponentsWithTag(component, 'button')[0];
